@@ -1,5 +1,24 @@
 {
   "dependencies": {
     "express": "^5.1.0"
-  }
+  },
+  "name": "express-course",
+  "version": "1.0.0",
+  "description": "This is my crash course",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server",
+    "dev": "node --watch server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mugwena14/Express-Course.git"
+  },
+  "author": "Makhubele Langavi Clyde",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mugwena14/Express-Course/issues"
+  },
+  "homepage": "https://github.com/Mugwena14/Express-Course#readme"
 }
