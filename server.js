@@ -23,16 +23,22 @@ const users = [
 // Using params to get specific user
 app.get('/api/users/:id', (req, res) => {
     const id = parseInt(req.params.id);
-    res.json(users.filter((user) => user.id === id));
+    const user = users.find((user) => user.id === id);
+
+    if(!user){
+        return res.status(404).json({msg: `User of id: ${id} was not found.`})
+    }else{
+        return res.status(200).json(user);
+    }
 })
 
 // Getting users and limits
 app.get('/api/users', (req, res) => {
     const lim = parseInt(req.query.limit);
     if(lim > 0){
-        return res.json(users.slice(0, lim))
+        return res.status(200).json(users.slice(0, lim))
     }else{
-    res.json(users);
+    res.status(200).json(users);
     }
 })
 
