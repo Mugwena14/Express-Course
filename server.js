@@ -18,10 +18,7 @@ const users = [
     }
 ]
 
-// Getting data from the server
-// app.get('/api/users', (req, res) => {
-//     res.json(users);
-// })
+
 
 // Using params to get specific user
 app.get('/api/users/:id', (req, res) => {
@@ -29,16 +26,15 @@ app.get('/api/users/:id', (req, res) => {
     res.json(users.filter((user) => user.id === id));
 })
 
-// Using limits
+// Getting users and limits
 app.get('/api/users', (req, res) => {
     const lim = parseInt(req.query.limit);
     if(lim > 0){
-        return res.json(users.slice(0, lim));
+        return res.json(users.slice(0, lim))
     }else{
-        res.json(users);
+    res.json(users);
     }
 })
-
 
 
 
