@@ -18,29 +18,58 @@ const users = [
     }
 ]
 
-
-
-// Using params to get specific user
+// Fetching user by id
 app.get('/api/users/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const user = users.find((user) => user.id === id);
 
-    if(!user){
-        return res.status(404).json({msg: `User of id: ${id} was not found.`})
-    }
+    if(user){
         return res.status(200).json(user);
+    }res.status(404).json({msg: `User of id ${id} not found.`})
 })
 
-// Getting users and limits
+//Fetching users and with limits
 app.get('/api/users', (req, res) => {
     const lim = parseInt(req.query.limit);
     if(lim > 0){
         return res.status(200).json(users.slice(0, lim))
-    }
-    res.status(200).json(users);
+    } res.status(200).json(users)
 })
 
+// Running the server
+app.listen(PORT, () => console.log(`Port is running on PORT: ${PORT}`))
 
 
-app.listen(PORT, () => console.log(`The Server is running on port ${PORT}`));
+
+
+
+
+
+
+
+
+
+// Using params to get specific user
+// app.get('/api/users/:id', (req, res) => {
+//     const id = parseInt(req.params.id);
+//     const user = users.find((user) => user.id === id);
+
+//     if(!user){
+//         return res.status(404).json({msg: `User of id: ${id} was not found.`})
+//     }
+//         return res.status(200).json(user);
+// })
+
+// Getting users and limits
+// app.get('/api/users', (req, res) => {
+//     const lim = parseInt(req.query.limit);
+//     if(lim > 0){
+//         return res.status(200).json(users.slice(0, lim))
+//     }
+//     res.status(200).json(users);
+// })
+
+
+
+// app.listen(PORT, () => console.log(`The Server is running on port ${PORT}`));
 
