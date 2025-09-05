@@ -27,9 +27,8 @@ app.get('/api/users/:id', (req, res) => {
 
     if(!user){
         return res.status(404).json({msg: `User of id: ${id} was not found.`})
-    }else{
-        return res.status(200).json(user);
     }
+        return res.status(200).json(user);
 })
 
 // Getting users and limits
@@ -37,9 +36,8 @@ app.get('/api/users', (req, res) => {
     const lim = parseInt(req.query.limit);
     if(lim > 0){
         return res.status(200).json(users.slice(0, lim))
-    }else{
-    res.status(200).json(users);
     }
+    res.status(200).json(users);
 })
 
 
