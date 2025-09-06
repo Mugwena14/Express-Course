@@ -50,6 +50,17 @@ router.put('/', (req, res) => {
     res.status(201).json(users);
 })
 
+// Updating the user
+router.put('/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const user = users.find((user) => user.id === id);
+
+    user.name = req.body.name;
+    res.status(200).json(users);
+})
+
+
+
 
 
 module.exports = router;
