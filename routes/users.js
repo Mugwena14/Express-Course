@@ -38,14 +38,15 @@ router.get('/', (req, res) => {
 
 // Creating a user
 router.put('/', (req, res) => {
-    const newPost = [
+    const newUser = [
         {id: users.length + 1},
         {name: req.body.name}
     ]
 
-    if(!newPost.name){
+    if(!newUser.name){
         res.status(400).json({msg: `Please insert your name`});
     }
+    users.push(newUser)
 
     res.status(201).json(users);
 })
@@ -55,12 +56,21 @@ router.put('/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const user = users.find((user) => user.id === id);
 
+    if(!user){
+        res.json({msg: `Ops, could not find user of id: ${id}`})
+    }
     user.name = req.body.name;
     res.status(200).json(users);
 })
 
 
+// Deleting user
+router.delete('/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const newUsers = users.filter((user) => user.id !== id);
 
+    res.status(200).json(newUsers);
+})
 
 
 module.exports = router;
