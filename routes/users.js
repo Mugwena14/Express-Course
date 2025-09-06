@@ -34,6 +34,22 @@ router.get('/', (req, res) => {
         return res.status(200).json(users.slice(0, lim))
     }
     res.status(200).json(users);
+});
+
+// Creating a user
+router.put('/', (req, res) => {
+    const newPost = [
+        {id: users.length + 1},
+        {name: req.body.name}
+    ]
+
+    if(!newPost.name){
+        res.status(400).json({msg: `Please insert your name`});
+    }
+
+    res.status(201).json(users);
 })
+
+
 
 module.exports = router;
