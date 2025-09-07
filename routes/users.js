@@ -1,4 +1,4 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 let users = [
@@ -73,4 +73,4 @@ router.delete('/:id', (req, res) => {
 })
 
 
-module.exports = router;
+export default router;
