@@ -1,10 +1,10 @@
 import express from "express";
 const router = express.Router();
 
-const users = [
-    {id: 1, name: Langavi},
-    {id: 2, name: John},
-    {id: 3, name: Jane},
+let users = [
+    {id: 1, name: 'Langavi'},
+    {id: 2, name: 'John'},
+    {id: 3, name: 'Jane'},
 ]
 
 // Getting users and with their limits
@@ -28,15 +28,14 @@ router.get('/:id', (req, res) => {
 
 // Adding new user
 router.post('/', (req, res) => {
-    const newUser = [
-        {id: users.length + 1},
-        {name: req.body.name}
-    ]
+    const newUser = {
+        id: users.length + 1,
+        name: req.body.name
+    }
 
     if(!newUser.name){
         return res.status(400).json({msg: `Please enter your name`})
     } users.push(newUser);
-
     res.status(201).json(users);
 });
 
@@ -54,11 +53,12 @@ router.put('/:id', (req, res) => {
 // Deleting users
 router.delete('/:id', (req, res) => {
     const id = parseInt(req.params.id);
-    const user = users.filter((user) => user.id !== id)
+    const newUsers = users.filter((user) => user.id !== id)
+    const user = users.find((user) => user.id === id);
 
     if(!user){
-        return res.status(404).json({msg: `User of id: ${id} not found`})
-    } res.status(200).json(users);
+        res.status(404).json({msg: `User of the id: ${id} not found.`})
+    } res.status(200).json(newUsers);
 })
 
 
