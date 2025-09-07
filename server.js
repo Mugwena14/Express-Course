@@ -1,11 +1,10 @@
 import express from "express";
-import path from "path";
-import users from './routes/users.js'
 const app = express();
+import users from './routes/users';
 const PORT = 3000;
 
 // Routes
 app.use('/api/users', users);
 
-app.listen(PORT, () => console.log(`The Server is running on port ${PORT}`));
-
+// Running the server
+app.listen(PORT, () => console.log(`Server is running on PORT: ${PORT}`))
