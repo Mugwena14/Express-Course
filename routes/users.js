@@ -21,9 +21,11 @@ router.get('/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const user = users.find((user) => user.id === id);
 
-    if(user){
-        return res.status(200).json(user);
-    } res.status(404).json({msg: `User of the id: ${id} not found.`})
+    if(!user){
+        const error = new Error(`User of the id: ${id} not found.`)
+        error.status = 404;
+        return next(error);
+    } res.status(200).json(user);
 })
 
 // Adding new user
@@ -34,7 +36,9 @@ router.post('/', (req, res) => {
     }
 
     if(!newUser.name){
-        return res.status(400).json({msg: `Please enter your name`})
+        const error = new Error(`Please enter your name`);
+        error.status = 400;
+        return next(error);
     } users.push(newUser);
     res.status(201).json(users);
 });
@@ -46,7 +50,9 @@ router.put('/:id', (req, res) => {
 
     user.name = req.body.name;
     if(!user.name){
-        return res.status(400).json({msg: `Please enter your name`})
+        const error = new Error(`Please enter your name`);
+        error.status = 400;
+        return next(error);
     } res.status(200).json(users)
 })
 
@@ -57,7 +63,9 @@ router.delete('/:id', (req, res) => {
     const user = users.find((user) => user.id === id);
 
     if(!user){
-        res.status(404).json({msg: `User of the id: ${id} not found.`})
+        const error = new Error(`User of the id: ${id} not found.`);
+        error.status = 404;
+        return next(error);
     } res.status(200).json(newUsers);
 })
 
@@ -65,3 +73,4 @@ router.delete('/:id', (req, res) => {
 
 
 export default router
+
