@@ -1,26 +1,26 @@
 import express from "express";
 const router = express.Router();
-
-let users = [
-    {id: 1, name: 'Langavi'},
-    {id: 2, name: 'John'},
-    {id: 3, name: 'Jane'},
-]
+import { 
+    getUser, 
+    getUserById, 
+    addUser, 
+    updateUser, 
+    deleteUser } from '../controllers/userController.js'
 
 // Getting users and with their limits
-router.get('/', )
+router.get('/', getUser);
 
 // Getting users by their id
-router.get('/:id', )
+router.get('/:id', getUserById);
 
 // Adding new user
-router.post('/', );
+router.post('/', addUser);
 
 // Updating user
-router.put('/:id', )
+router.put('/:id', updateUser);
 
 // Deleting users
-router.delete('/:id', )
+router.delete('/:id', deleteUser);
 
 
 

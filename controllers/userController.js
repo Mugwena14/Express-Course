@@ -1,6 +1,6 @@
 // @desc getting user
 // @routes GET /api/users
-const getUser = (req, res) => {
+export const getUser = (req, res) => {
     const lim = parseInt(req.query.limit);
     const newUsers = users.slice(0, lim);
     if(lim > 0){
@@ -10,7 +10,7 @@ const getUser = (req, res) => {
 
 // @desc Getting user by id
 // @routes GET /api/users/:id
-const getUserById = (req, res, next) => {
+export const getUserById = (req, res, next) => {
     const id = parseInt(req.params.id);
     const user = users.find((user) => user.id === id);
 
@@ -24,7 +24,7 @@ const getUserById = (req, res, next) => {
 
 // @desc Adding user
 // @routes POST /api/users/
-const addUser = (req, res, next) => {
+export const addUser = (req, res, next) => {
     const newUser = {
         id: users.length + 1,
         name: req.body.name
@@ -41,7 +41,7 @@ const addUser = (req, res, next) => {
 
 // @desc Updating User
 // @route PUT /api/users/:id
-const updateUser = (req, res, next) => {
+export const updateUser = (req, res, next) => {
     const id = parseInt(req.params.id);
     const user = users.find((user) => user.id === id);
 
@@ -61,7 +61,7 @@ const updateUser = (req, res, next) => {
 
 // @desc Delete User
 // @route PUT /api/users/:id
-const deleteUser = (req, res, next) => {
+export const deleteUser = (req, res, next) => {
     const id = parseInt(req.params.id);
     const newUsers = users.filter((user) => user.id !== id)
     const user = users.find((user) => user.id === id);
