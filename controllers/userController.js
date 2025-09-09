@@ -20,3 +20,20 @@ const getUserById = (req, res, next) => {
         return next(error);
     } res.status(200).json(user);
 }
+
+
+// @desc Adding user
+// @routes POST /api/users/
+const addUser = (req, res, next) => {
+    const newUser = {
+        id: users.length + 1,
+        name: req.body.name
+    }
+
+    if(!newUser.name){
+        const error = new Error(`Please enter your name`);
+        error.status = 400;
+        return next(error);
+    } users.push(newUser);
+    res.status(201).json(users);
+}
