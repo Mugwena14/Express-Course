@@ -1,3 +1,10 @@
+
+let users = [
+    {id: 1, name: 'Langavi'},
+    {id: 2, name: 'John'},
+    {id: 3, name: 'Jane'},
+]
+
 // @desc getting user
 // @routes GET /api/users
 export const getUser = (req, res) => {
