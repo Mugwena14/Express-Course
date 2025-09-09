@@ -37,3 +37,38 @@ const addUser = (req, res, next) => {
     } users.push(newUser);
     res.status(201).json(users);
 }
+
+
+// @desc Updating User
+// @route PUT /api/users/:id
+const updateUser = (req, res, next) => {
+    const id = parseInt(req.params.id);
+    const user = users.find((user) => user.id === id);
+
+    if(!user){
+        const error = new Error(`User of id: ${id} not found.`);
+        error.status = 404;
+        return next(error);
+    }
+
+    user.name = req.body.name;
+    if(!user.name){
+        const error = new Error(`Please enter your name`);
+        error.status = 400;
+        return next(error);
+    } res.status(200).json(users);
+}
+
+// @desc Delete User
+// @route PUT /api/users/:id
+const deleteUser = (req, res, next) => {
+    const id = parseInt(req.params.id);
+    const newUsers = users.filter((user) => user.id !== id)
+    const user = users.find((user) => user.id === id);
+
+    if(!user){
+        const error = new Error(`User of the id: ${id} not found.`);
+        error.status = 404;
+        return next(error);
+    } res.status(200).json(newUsers);
+}
